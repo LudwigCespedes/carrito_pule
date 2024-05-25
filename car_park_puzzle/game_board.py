@@ -9,7 +9,7 @@ class Board:
 
         self.row = row
         self.col = col
-        self.board = [['.' for _ in range(row)] for _ in range(col)]
+        self.board = [['.' for _ in range(col)] for _ in range(row)]
         self.cars = {}
 
     def add_car(self, car):

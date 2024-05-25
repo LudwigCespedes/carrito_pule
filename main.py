@@ -1,12 +1,20 @@
 from car_park_puzzle.car import Car
 from car_park_puzzle.game_board import Board
-
+from car_park_puzzle.gui.main_gui import *
+main()
 def main():
-    game = Board(row=6, col=6)
-    game.add_car(Car('X', 2, 'H', 2, 2))  # Coche objetivo
-    game.add_car(Car('A', 3, 'V', 0, 0))
-    game.add_car(Car('B', 2, 'H', 0, 3))
-    game.add_car(Car('C', 2, 'V', 3, 1))
+    CAR1 = Car('1', 2, 'H', 2, 2)
+    CAR2 = Car('2', 2, 'H', 3, 3)
+    CAR3 = Car('3', 3, 'V', 0, 0)
+    CAR4 = Car('4', 2, 'H', 0, 3)
+    CAR5 = Car('5', 2, 'V', 3, 1)
+    game = Board(row=10, col=7)
+    game.add_car(CAR1)
+    game.add_car(CAR2)  # Coche objetivo
+    game.add_car(CAR3)
+    game.add_car(CAR3)
+    game.add_car(CAR4)
+    game.add_car(CAR5)
 
     while True:
         game.display_board()
