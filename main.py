@@ -8,13 +8,15 @@ def main():
     CAR3 = Car('3', 3, 'V', 0, 0)
     CAR4 = Car('4', 2, 'H', 0, 3)
     CAR5 = Car('5', 2, 'V', 3, 1)
-    game = Board(row=10, col=7)
+    CAR6 = Car('7', 5, 'H', 5, 0)
+    game = Board(row=6, col=6)
     game.add_car(CAR1)
     game.add_car(CAR2)  # Coche objetivo
     game.add_car(CAR3)
     game.add_car(CAR3)
     game.add_car(CAR4)
     game.add_car(CAR5)
+    game.add_car(CAR6)
 
     while True:
         game.display_board()
@@ -24,7 +26,7 @@ def main():
 
         game.move_car(car_id, direction, steps)
 
-        if game.check_victory('X', 2, 5):
+        if game.check_victory('1', 2, 5):
             print("¡Has ganado!")
             break
 
