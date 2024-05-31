@@ -18,10 +18,13 @@ def main():
     game.add_car(CAR5)
     game.add_car(CAR6)
 
-    """
+
     while True:
         game.display_board()
         print(game.get_movable_cars())
+        
+   
+
         car_id = input("Ingresa el ID del coche a mover: ")
         direction = input("Ingresa la dirección (A, D, W, S): ")
         steps = int(input("Ingresa el número de pasos: "))
@@ -31,17 +34,9 @@ def main():
         if game.check_victory('1', 2, 5):
             print("¡Has ganado!")
             break
-    	"""
 
-    # Supongamos que tienes una instancia de la clase Board llamada board
-    exit_row, exit_col = 2, 5  # La posición de salida
-    target_car_id = 'X'  # El coche que debe llegar a la salida
 
-    solution_board = Board.bfs(target_car_id, exit_row, exit_col)
-    if solution_board:
-        print("Found a solution!")
-    else:
-        print("No solution found.")
+
 
 if __name__ == "__main__":
     main()
