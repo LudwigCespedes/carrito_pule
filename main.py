@@ -1,7 +1,7 @@
 from car_park_puzzle.car import Car
 from car_park_puzzle.game_board import Board
 from car_park_puzzle.gui.main_gui import *
-from car_park_puzzle.algoritmos.dfs import BFS
+
 #main()
 def main():
     CAR1 = Car('1', 2, 'H', 2, 2)
@@ -20,17 +20,17 @@ def main():
     game.add_car(CAR6)
 
 
-    while True:
-        game.display_board()
-        print(game.get_movable_cars())
-        print("Estado inicial del tablero:")
-        game.display_board()
+    #while True:
+    game.display_board()
+    print(game.get_movable_cars().append(game.get_movable_cars()))
+    print("Estado inicial del tablero:")
+    game.display_board()
 
-        BFS(game,"1",exit_row=2, exit_col=5).bfs()
+    game.bfs()
         
         
    
-
+"""
         car_id = input("Ingresa el ID del coche a mover: ")
         direction = input("Ingresa la dirección (A, D, W, S): ")
         steps = int(input("Ingresa el número de pasos: "))
@@ -39,7 +39,7 @@ def main():
 
         if game.check_victory('1', 2, 5):
             print("¡Has ganado!")
-            break
+            break"""
 
 
 

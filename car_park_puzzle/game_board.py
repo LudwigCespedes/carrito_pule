@@ -129,4 +129,26 @@ class Board:
                         break
         return movable_cars
 
+    def bfs (self):
+        frontier = self.get_movable_cars()
+        explored = []
+        q = True
+        while q and len(frontier)!=0:
+            #print(f'frontera: {frontier}')
+            #print(f'explored: {explored}')
+            node = frontier.pop(0)
+            if self.check_victory('1', 2, 5):
+                print(f"haz ganado")
+                q = False
+                break
+            
+            if node not in explored:
+                explored.append(node)
+                try:
+                    self.move_car(node[0], node[1], node[2])
+                except Exception as e:
+                    print(f"Error al mover el carro {node}: {e}")
+                    continue
 
+                frontier.append(self.get_movable_cars())
+            self.display_board()
