@@ -1,6 +1,7 @@
 from car_park_puzzle.car import Car
 from car_park_puzzle.game_board import Board
 from car_park_puzzle.gui.main_gui import *
+from car_park_puzzle.algoritmos.dfs import BFS
 #main()
 def main():
     CAR1 = Car('1', 2, 'H', 2, 2)
@@ -22,6 +23,11 @@ def main():
     while True:
         game.display_board()
         print(game.get_movable_cars())
+        print("Estado inicial del tablero:")
+        game.display_board()
+
+        BFS(game,"1",exit_row=2, exit_col=5).bfs()
+        
         
    
 
