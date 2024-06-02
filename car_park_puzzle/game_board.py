@@ -5,12 +5,13 @@ class Car:
     """
     A class for modeling a car 
     """
-    def __init__(self, id, length, orientation, row, col):
+    def __init__(self, id, length, orientation, row, col, movable = True):
         self.id = id
         self.length = length
         self.orientation = orientation
         self.row = row
         self.col = col
+        self.movable = movable
 
 
 class Board:
@@ -35,6 +36,10 @@ class Board:
         
     def move_car(self, car_id, direction, steps):
         car = self.cars[car_id]
+        if not car.movable:
+            print(f"La roca {car_id} no se puede mover")
+            return
+        
         if car.orientation == 'H':
             if direction == 'A':
                 if car.col - steps >= 0 and all(self.board[car.row][car.col - i] == '.' for i in range(1, steps + 1)):
@@ -79,6 +84,8 @@ class Board:
     def get_movable_cars(self):
         movable_cars = []
         for car_id, car in self.cars.items():
+            if not car.movable:
+                continue
             if car.orientation == 'H':
                 for steps in range(1, car.col + 1):
                     if all(self.board[car.row][car.col - i] == '.' for i in range(1, steps + 1)):
@@ -134,4 +141,29 @@ class Board:
 
         print("No se encontró solución.")
         return None
+    
+    def dfs(self, target_car_id, exit_row, exit_col):
+        initial_state = self.copy_board()
+        frontier = [(initial_state, [])]
+        visited = set()
 
+        while frontier:
+            current_state, path = frontier.pop()
+
+            if current_state.check_victory(target_car_id, exit_row, exit_col):
+                print(f"Ganaste. Ruta: {path}")
+                return path
+
+            current_state_str = str(current_state.board)
+            if current_state_str in visited:
+                continue
+
+            visited.add(current_state_str)
+            for move in current_state.get_movable_cars():
+                new_state = current_state.copy_board()
+                new_state.move_car(move[0], move[1], move[2])
+                new_path = path + [move]
+                frontier.append((new_state, new_path))
+
+        print("No se encontró solución.")
+        return None
