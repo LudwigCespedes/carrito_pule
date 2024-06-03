@@ -142,11 +142,11 @@ class Board:
         print("No se encontró solución.")
         return None
     
-    def dfs(self, target_car_id, exit_row, exit_col):
+    def dfs1(self, target_car_id, exit_row, exit_col):
         initial_state = self.copy_board()
         frontier = [(initial_state, [])]
         visited = set()
-
+        #print(frontier.popleft())
         while frontier:
             current_state, path = frontier.pop()
 
@@ -167,3 +167,30 @@ class Board:
 
         print("No se encontró solución.")
         return None
+
+def dfs(board, car_id, goal_row, goal_col, max_depth=1000):
+    stack = [(board, [], 0)]  # (tablero actual, movimientos, profundidad)
+    visited = set()
+
+    while stack:
+        current_board, path, depth = stack.pop()
+
+        if depth > max_depth:
+            continue
+
+        current_state = current_board.get_state()
+        if current_state in visited:
+            continue
+
+        visited.add(current_state)
+
+        if current_board.check_victory(car_id, goal_row, goal_col):
+            print(f"¡Ganador! Carro {car_id} alcanzó la meta.")
+            return path
+
+        for move in current_board.get_possible_moves():
+            next_board = current_board.copy()
+            next_board.move_car(move)
+            stack.append((next_board, path + [move], depth + 1))
+
+    return None
