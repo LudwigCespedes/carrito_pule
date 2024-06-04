@@ -203,7 +203,7 @@ class Board:
         elif car.orientation == 'V':
             return abs(exit_row - (car.row + car.length - 1))
 
-    def combined_heuristics(self, car, exit_row, exit_col, heuristics):
+    def combined_heuristics(self, car, exit_row, exit_col, heuristics = ['manhattan','euclidean','blocking_cars',"weighted_manhattan",'movement_distance']):
         total_cost = 0
         for heuristic in heuristics:
             if heuristic == 'manhattan':
