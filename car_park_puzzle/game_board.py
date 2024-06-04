@@ -142,7 +142,7 @@ class Board:
         print("No se encontró solución.")
         return None
     
-    def dfs(self, target_car_id, exit_row, exit_col,max_depth=10):
+    def dfs(self, target_car_id, exit_row, exit_col,max_depth=100):
         initial_state = self.copy_board()
         frontier = [(initial_state, [], 0)]
         visited = set()
